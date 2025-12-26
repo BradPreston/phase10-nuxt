@@ -14,6 +14,9 @@ importers:
       '@nuxt/ui':
         specifier: 4.3.0
         version: 4.3.0(30fd86de67c70fc1e0a806539ff6b0fe)
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
       drizzle-orm:
         specifier: ^0.45.1
         version: 0.45.1(@libsql/client@0.15.15)
