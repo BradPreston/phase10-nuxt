@@ -14,6 +14,7 @@ export default withNuxt(antfu({
     quotes: "double",
   },
 }, {
+  ignores: ["lib/db/migrations/meta/**"],
   rules: {
     "ts/no-redeclare": ["off"],
     "ts/consistent-type-definitions": ["error", "type"],
