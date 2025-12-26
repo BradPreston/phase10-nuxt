@@ -1,6 +1,7 @@
+import antfu from "@antfu/eslint-config";
+
 // @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
-import antfu from '@antfu/eslint-config'
+import withNuxt from "./.nuxt/eslint.config.mjs";
 
 export default withNuxt(antfu({
   type: "app",
@@ -11,9 +12,10 @@ export default withNuxt(antfu({
     indent: 2,
     semi: true,
     quotes: "double",
-  }
+  },
 }, {
-  "rules": {
+  rules: {
+    "ts/no-redeclare": ["off"],
     "ts/consistent-type-definitions": ["error", "type"],
     "no-console": ["warn"],
     "antfu/no-top-level-await": ["off"],
@@ -24,7 +26,7 @@ export default withNuxt(antfu({
     }],
     "unicorn/filename-case": ["error", {
       case: "kebabCase",
-      ignore: ["README.md"]
-    }]
-  }
-}))
+      ignore: ["README.md"],
+    }],
+  },
+}));

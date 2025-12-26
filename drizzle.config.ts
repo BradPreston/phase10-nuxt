@@ -1,14 +1,14 @@
-import { config } from "dotenv";
 import { defineConfig } from "drizzle-kit";
 
-config({ path: ".env" });
+import env from "./lib/env";
 
 export default defineConfig({
-  schema: "./shared/db/schema.ts",
-  out: "./shared/db/migrations",
+  schema: "./lib/db/schema/index.ts",
+  out: "./lib/db/migrations",
+  casing: "snake_case",
   dialect: "turso",
   dbCredentials: {
-    url: process.env.DATABASE_URL!,
-    authToken: process.env.DATABASE_AUTH_TOKEN!,
-  }
+    url: env.DATABASE_URL,
+    authToken: env.NODE_ENV === "development" ? undefined : env.DATABASE_AUTH_TOKEN,
+  },
 });
