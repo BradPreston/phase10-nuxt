@@ -1,23 +1,23 @@
 import { db } from "../index";
-import { usersTable, type InsertUser, gamesTable, type InsertGame, playersTable, type InsertPlayer, roundsTable, type InsertRound, roundScoresTable, type InsertRoundScore } from "../schema";
+import { user, type InsertUser, game, type InsertGame, player, type InsertPlayer, round, type InsertRound, roundScore, type InsertRoundScore } from "../schema";
 
 
-export async function createUser(user: InsertUser) {
-  return await db.insert(usersTable).values(user);
+export async function createUser(data: InsertUser) {
+  return await db.insert(user).values(data);
 }
 
-export async function createGame(game: InsertGame) {
-  return await db.insert(gamesTable).values(game);
+export async function createGame(data: InsertGame) {
+  return await db.insert(game).values(data);
 }
 
-export async function createPlayer(player: InsertPlayer) {
-  return await db.insert(playersTable).values(player);
+export async function createPlayer(data: InsertPlayer) {
+  return await db.insert(player).values(data);
 }
 
-export async function createRound(round: InsertRound) {
-  return await db.insert(roundsTable).values(round);
+export async function createRound(data: InsertRound) {
+  return await db.insert(round).values(data);
 }
 
-export async function createRoundScore(roundScore: InsertRoundScore) {
-  return await db.insert(roundScoresTable).values(roundScore);
+export async function createRoundScore(data: InsertRoundScore) {
+  return await db.insert(roundScore).values(data);
 }
