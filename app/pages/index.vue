@@ -1,60 +1,56 @@
 <script setup lang="ts">
+import SignInForm from "~/components/forms/sign-in-form.vue";
+import PrimaryBgContainer from "~/components/primary-bg-container.vue";
+
 import { authClient } from "../../lib/auth-client";
 
 const session = authClient.useSession();
-
-async function signup(event: Event) {
-  const formData = new FormData(event.target as HTMLFormElement);
-
-  await authClient.signUp.email({
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
-    name: formData.get("name") as string,
-  });
-}
-
-async function signin(event: Event) {
-  const formData = new FormData(event.target as HTMLFormElement);
-
-  await authClient.signIn.email({
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
-  });
-}
-
-async function signout() {
-  await authClient.signOut();
-}
 </script>
 
 <template>
-  <div>
-    <h1>Hello World</h1>
-    <div v-if="!session?.data">
-      <div>
-        <h2>Signup</h2>
-        <form @submit.prevent="signup">
-          <input type="text" name="name" placeholder="Name">
-          <input type="email" name="email" placeholder="Email">
-          <input type="password" name="password" placeholder="Password">
-          <button type="submit">
-            Signup
-          </button>
-        </form>
+  <div class="flex flex-col justify-center items-center min-h-screen w-full relative">
+    <PrimaryBgContainer>
+      <NuxtImg
+        src="/images/phase-10-logo.png"
+        alt="Phase 10 logo"
+        class="max-w-96 w-full h-full object-contain"
+        :preload="true"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </PrimaryBgContainer>
+    <div v-if="!session?.data" class="flex justify-center w-full relative z-20">
+      <SignInForm />
+    </div>
+    <div v-else class="flex justify-center w-full">
+      <div class="w-full max-w-sm flex flex-col border border-gray-200 bg-gray-50 p-4 rounded-lg shadow-lg z-10">
+        <h2 class="text-2xl font-bold mb-1">
+          Welcome back, {{ session?.data?.user?.name }}!
+        </h2>
+        <p class="mb-4">
+          We're glad to see you again! Would you like to continue your last game or start a new one?
+        </p>
+        <div class="flex flex-col gap-2 w-full">
+          <UButton color="secondary" class="w-full h-full flex items-center justify-center gap-2 text-base" href="/" disabled>
+            <Icon name="heroicons:arrow-path-rounded-square-16-solid" class="size-5" />
+            Continue last game
+          </UButton>
+          <UButton class="w-full h-full flex items-center justify-center gap-2 text-base" href="/">
+            <Icon name="heroicons:plus-16-solid" class="size-5" />
+            Create a new game
+          </UButton>
+        </div>
       </div>
-      <h2>Signin</h2>
-      <form @submit.prevent="signin">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">
-          Signin
-        </button>
-      </form>
     </div>
-    <div v-else>
-      <button @click="signout">
-        Signout
-      </button>
-    </div>
+    <NuxtImg
+      src="/images/phase-10-cards.png"
+      alt="Phase 10 cards"
+      class="w-screen h-auto fixed bottom-0 left-0 -z-10 opacity-10"
+      :preload="true"
+      loading="eager"
+      fetchpriority="high"
+      quality="80"
+      format="webp"
+    />
   </div>
 </template>
