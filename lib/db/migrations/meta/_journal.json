@@ -8,6 +8,27 @@
       "when": 1766780931911,
       "tag": "0000_organic_chameleon",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1766799176144,
+      "tag": "0001_wakeful_deathstrike",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1766799194644,
+      "tag": "0002_sour_jamie_braddock",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1766800039007,
+      "tag": "0003_military_amphibian",
+      "breakpoints": true
     }
   ]
 }
