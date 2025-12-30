@@ -39,7 +39,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     <h2 class="text-2xl font-bold">
       Sign in
     </h2>
-    <UForm :schema="schema" :state="state" class="w-full max-w-sm gap-4 flex flex-col" @submit.prevent="onSubmit">
+    <UForm :schema="schema" :state="state" class="w-full max-w-sm gap-4 flex flex-col" method="POST" @submit.prevent="onSubmit">
       <UFormField name="email" label="Email">
         <UInput v-model="state.email" class="w-full" autocomplete="email" />
       </UFormField>
