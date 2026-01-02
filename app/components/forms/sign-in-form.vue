@@ -3,7 +3,9 @@ import type { FormSubmitEvent } from "@nuxt/ui";
 
 import { z } from "zod";
 
-import { authClient } from "../../../lib/auth-client";
+import { useAuthStore } from "../../../stores/auth";
+
+const authStore = useAuthStore();
 
 const schema = z.object({
   email: z.email("Invalid email address"),
@@ -20,17 +22,14 @@ const state = reactive<Partial<Schema>>({
 const toast = useToast();
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  await authClient.signIn.email({
-    email: event.data.email,
-    password: event.data.password,
-  }, {
-    onSuccess: () => {
-      toast.add({ title: "Success", description: "You are now logged in", color: "success" });
-    },
-    onError: ({ error }) => {
-      toast.add({ title: "Error", description: error?.message ?? "Failed to log in", color: "error" });
-    },
-  });
+  const response = await authStore.signIn(event.data.email, event.data.password);
+  if (response.data) {
+    toast.add({ title: "Success", description: "Sign in successful", color: "success" });
+    navigateTo("/");
+  }
+  else {
+    toast.add({ title: "Error", description: response.error?.message ?? "Failed to sign in", color: "error" });
+  }
 }
 </script>
 
