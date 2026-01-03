@@ -1,7 +1,7 @@
 import { auth } from "~~/lib/auth";
 
 export default defineEventHandler(async (event) => {
-  if (event.path.startsWith("/game/" || event.path.startsWith("/account"))) {
+  if (event.path.startsWith("/games/" || event.path.startsWith("/account"))) {
     const session = await auth.api.getSession({
       headers: event.headers,
     });
