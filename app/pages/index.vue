@@ -35,7 +35,7 @@ const authStore = useAuthStore();
             <Icon name="heroicons:arrow-path-rounded-square-16-solid" class="size-5" />
             Continue last game
           </UButton>
-          <UButton class="w-full h-full flex items-center justify-center gap-2 text-base" href="/game/new">
+          <UButton class="w-full h-full flex items-center justify-center gap-2 text-base" href="/games/new">
             <Icon name="heroicons:plus-16-solid" class="size-5" />
             Create a new game
           </UButton>
